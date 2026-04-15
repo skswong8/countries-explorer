@@ -2,20 +2,23 @@
 	<ul class="continents">
 		<li
 			class="continent-card"
-			v-for="continent in result?.continents"
+			v-for="continent in continents"
 			:key="continent.code"
-			@click="goToContinent"
+			@click="goToContinent(continent.code)"
 		>
 			<h2>{{ continent.name }}</h2>
 		</li>
 	</ul>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import { gql } from '@apollo/client/core'
 import type { ContinentsQuery } from '@/types/graphql'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const GET_CONTINENTS_QUERY = gql`
 	query getContinents {
@@ -26,20 +29,18 @@ const GET_CONTINENTS_QUERY = gql`
 	}
 `
 
-export default defineComponent({
-	name: 'HomePage',
-	props: {},
-	components: {},
-	setup() {
-		const { result } = useQuery<ContinentsQuery>(GET_CONTINENTS_QUERY)
+const { result } = useQuery<ContinentsQuery>(GET_CONTINENTS_QUERY)
 
-		const goToContinent = () => {
-			console.log('Clicked')
-		}
+const continents = computed(() => result.value?.continents ?? [])
 
-		return { result, goToContinent }
-	},
-})
+/**
+ * Navigate to chosen continent view.
+ * @param string continent Continent code.
+ * @returns void.
+ */
+const goToContinent = (continent: string): void => {
+	router.push({ name: 'Countries', params: { code: continent } })
+}
 </script>
 
 <style scoped>
