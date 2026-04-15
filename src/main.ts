@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
+import '@/scss/main.scss'
 
 // HTTP connection to the API
 const httpLink = createHttpLink({
