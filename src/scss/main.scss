@@ -1,13 +1,29 @@
 :root {
+	--black: #000;
 	--grey: #f7f7f7;
 }
 
+html,
 body {
 	margin: 0;
+	padding: 0;
 }
 
 #app {
 	max-width: 80rem;
 	margin: 0 auto;
-	padding: 0 2rem;
+	padding: 0 2rem 4rem;
+}
+
+.button {
+	padding: 1rem 1.5rem;
+	display: inline-block;
+	background-color: var(--grey);
+	border-radius: 10px;
+	color: var(--black);
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
 }

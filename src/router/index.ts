@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import CountriesPage from '@/views/CountriesPage.vue'
+import NotFound from '@/views/NotFound.vue'
 
 const routes = [
 	{
@@ -12,6 +13,11 @@ const routes = [
 		path: '/continent/:code',
 		name: 'Countries',
 		component: CountriesPage,
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'NotFound',
+		component: NotFound,
 	},
 ]
 
