@@ -19,7 +19,7 @@ export interface ContinentQuery {
 				code: string
 				name: string
 				native: string
-				rtl: string
+				rtl: boolean
 			}>
 			name: string
 			native: string

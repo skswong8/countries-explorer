@@ -7,8 +7,28 @@
 			<p>There are {{ continent?.countries?.length || 0 }} countries in {{ continent?.name }}</p>
 			<div class="country-cards">
 				<div class="country-card" v-for="country in countries" :key="country.code">
-					<h2>{{ country.name }}</h2>
-					<span>{{ country.emoji }}</span>
+					<div class="country-header">
+						<h2>{{ country.name }}</h2>
+						<span class="emoji">{{ country.emoji }}</span>
+					</div>
+					<div class="overlay">
+						<ul>
+							<li>Native name: {{ country.native }}</li>
+							<li>Code: {{ country.code }}</li>
+							<li>Currency: {{ country.currency?.replaceAll(',', ', ') }}</li>
+							<li>Languages:</li>
+							<li
+								class="list-has-children"
+								v-for="language in country.languages"
+								:key="language.code"
+							>
+								<ul>
+									<li>{{ language.name }}</li>
+								</ul>
+							</li>
+							<li>Phone: +{{ country.phone }}</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<router-link to="/" class="button">Back to continents</router-link>
@@ -74,24 +94,90 @@ const countries = computed(() => {
 <style scoped>
 .country-cards {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
 	margin-bottom: 2rem;
+
+	@media (min-width: 768px) {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	@media (min-width: 1024px) {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
 }
 
 .country-card {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
 	background-color: var(--grey);
-	min-height: 20rem;
 	padding: 1rem;
-	text-align: center;
+	position: relative;
 
-	span {
+	@media (min-width: 1024px) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		min-height: 26rem;
+	}
+
+	&:hover {
+		.overlay {
+			opacity: 1;
+		}
+	}
+
+	li + li {
+		margin-top: 0.5rem;
+	}
+}
+
+.country-header {
+	display: flex;
+
+	@media (min-width: 1024px) {
+		flex-direction: column;
+	}
+
+	.emoji {
 		order: -1;
-		font-size: 6rem;
+		margin-right: 0.5rem;
+
+		@media (min-width: 1024px) {
+			margin-right: 0;
+			font-size: 6rem;
+		}
+	}
+
+	h2 {
+		margin: 0;
+	}
+
+	h2,
+	.emoji {
+		@media (min-width: 1024px) {
+			text-align: center;
+		}
+	}
+}
+
+.list-has-children {
+	list-style: none;
+	padding: 0;
+}
+
+.overlay {
+	@media (min-width: 1024px) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		transition: opacity 300ms ease;
+		background-color: rgba(var(--black-rgb), 0.85);
+		color: var(--white);
+		height: 100%;
+		width: 100%;
+		padding: 1rem;
+		box-sizing: border-box;
 	}
 }
 </style>
