@@ -36,7 +36,7 @@ const continents = computed(() => result.value?.continents ?? [])
 /**
  * Navigate to chosen continent view.
  * @param string continent Continent code.
- * @returns void.
+ * @returns {void}
  */
 const goToContinent = (continent: string): void => {
 	router.push({ name: 'Countries', params: { code: continent } })

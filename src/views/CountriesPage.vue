@@ -34,6 +34,7 @@
 			<router-link to="/" class="button">Back to continents</router-link>
 		</div>
 	</div>
+	<ScrollToTop />
 </template>
 
 <script setup lang="ts">
@@ -42,6 +43,7 @@ import { useQuery } from '@vue/apollo-composable'
 import { gql } from '@apollo/client/core'
 import type { ContinentQuery } from '@/types/graphql'
 import { useRoute, useRouter } from 'vue-router'
+import ScrollToTop from '@/components/ScrollToTop.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -83,7 +85,11 @@ watch([continent, loading], ([newContinent, isLoading]) => {
 	}
 })
 
-// The API returns countries sorted by code. Reorder by name.
+//
+/**
+ * The API returns countries sorted by code. Reorder by name.
+ * @returns {Array} Reordered array of countries.
+ */
 const countries = computed(() => {
 	return [...(result.value?.continent?.countries || [])].sort((a, b) => {
 		return a.name.localeCompare(b.name)
