@@ -1,4 +1,5 @@
 <template>
+	<h1>Countries Explorer</h1>
 	<ul class="continents">
 		<li
 			class="continent-card"

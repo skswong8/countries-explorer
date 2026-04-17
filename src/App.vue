@@ -2,7 +2,7 @@
 
 <template>
 	<header>
-		<h1>Welcome!</h1>
+		<span>Logo goes here</span>
 	</header>
 	<router-view />
 </template>
