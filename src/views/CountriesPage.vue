@@ -5,8 +5,18 @@
 		<div v-else>
 			<h1>Countries in {{ continent?.name }}</h1>
 			<p>There are {{ continent?.countries?.length || 0 }} countries in {{ continent?.name }}</p>
+			<div class="filter">
+				<label for="currencies">Filter by currency:</label>
+				<select id="currencies" v-model="selectedCurrency" class="input">
+					<option value="">All Currencies</option>
+					<option v-for="currency in availableCurrencies" :key="currency" :value="currency">
+						{{ currency }}
+					</option>
+				</select>
+				<button @click="resetFilter()">Reset filter</button>
+			</div>
 			<div class="country-cards">
-				<div class="country-card" v-for="country in countries" :key="country.code">
+				<div class="country-card" v-for="country in filteredCountries" :key="country.code">
 					<div class="country-header">
 						<h2>{{ country.name }}</h2>
 						<span class="emoji">{{ country.emoji }}</span>
@@ -15,7 +25,7 @@
 						<ul>
 							<li>Native name: {{ country.native }}</li>
 							<li>Code: {{ country.code }}</li>
-							<li>Currency: {{ country.currency?.replaceAll(',', ', ') }}</li>
+							<li>Currencies: {{ country.currency?.replaceAll(',', ', ') }}</li>
 							<li>Languages:</li>
 							<li
 								class="list-has-children"
@@ -38,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed, watch, ref } from 'vue'
 import { useQuery } from '@vue/apollo-composable'
 import { gql } from '@apollo/client/core'
 import type { ContinentQuery } from '@/types/graphql'
@@ -48,6 +58,7 @@ import ScrollToTop from '@/components/ScrollToTop.vue'
 const route = useRoute()
 const router = useRouter()
 const code = route.params.code as string
+const selectedCurrency = ref('')
 
 const GET_COUNTRIES_BY_CONTINENT_QUERY = gql`
 	query getCounties($code: ID!) {
@@ -85,19 +96,57 @@ watch([continent, loading], ([newContinent, isLoading]) => {
 	}
 })
 
-//
 /**
  * The API returns countries sorted by code. Reorder by name.
  * @returns {Array} Reordered array of countries.
  */
-const countries = computed(() => {
+const sortedCountries = computed(() => {
 	return [...(result.value?.continent?.countries || [])].sort((a, b) => {
 		return a.name.localeCompare(b.name)
 	})
 })
+
+/**
+ * Get all available currencies from the countries and return a collection of unique values.
+ * @returns {Array} Unique currency values.
+ */
+const availableCurrencies = computed(() => {
+	const allCurrencies = sortedCountries.value
+		.flatMap((country) => {
+			if (!country.currency) return []
+			return country.currency.split(',').map((c) => c.trim())
+		})
+		.filter(Boolean)
+
+	return [...new Set(allCurrencies)].sort((a, b) => a.localeCompare(b))
+})
+
+/**
+ * Filter countries by selected currency binding.
+ * @returns {Array} Array of countries by filter value.
+ */
+const filteredCountries = computed(() => {
+	return sortedCountries.value.filter((country) =>
+		country?.currency.includes(selectedCurrency.value),
+	)
+})
+
+/**
+ * Reset currency filter.
+ * @returns {void}
+ */
+const resetFilter = (): void => {
+	selectedCurrency.value = ''
+}
 </script>
 
 <style scoped>
+.filter {
+	margin-bottom: 1rem;
+	display: flex;
+	gap: 0.5rem;
+}
+
 .country-cards {
 	display: grid;
 	grid-template-columns: 1fr 1fr;

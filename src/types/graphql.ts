@@ -13,7 +13,7 @@ export interface ContinentQuery {
 		name: string
 		countries: Array<{
 			code: string
-			currency: string | null
+			currency: string
 			emoji: string
 			languages: Array<{
 				code: string
