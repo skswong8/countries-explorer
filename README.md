@@ -1,27 +1,42 @@
-# countries-explorer
+# 🌍 Countries Explorer
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 + TypeScript web application to explore countries by continent built as a portfolio project.
 
-## Recommended IDE Setup
+## Features
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Browse continents and their countries
+- Basic country information
+- Filter countries by currency and reset
+- Back to top component
+- Responsive grid layout with hover effects
+- 404 redirect for invalid continent codes
+- Fully typed with TypeScript + GraphQL
+- Basic styling, this is only a demonstration of Vue 3 + TypeScript as opposed to styling skills
 
-## Recommended Browser Setup
+## Tech Stack
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- **Framework**: Vue 3 + `<script setup>` + Composition API
+- **Language**: TypeScript
+- **Styling**: SCSS
+- **GraphQL Client**: Apollo Client + `@vue/apollo-composable`
+- **Routing**: Vue Router
+- **State Management**: Reactive composables + `computed()`
+- **Build Tool**: Vite
 
-## Type Support for `.vue` Imports in TS
+## Project Structure
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+```text
+src/
+├── components/           # Reusable UI components
+├── composables/          # Custom logic
+├── graphql/              # GraphQL queries
+├── router/               # Vue Router configuration
+├── scss/                 # Global styles
+├── types/                # TypeScript interfaces
+├── views/                # Page components
+├── App.vue
+└── main.ts
+```
 
 ## Project Setup
 
