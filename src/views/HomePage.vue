@@ -8,19 +8,19 @@
 		sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
 	</p>
 	<div v-if="continentsLoading">Loading countries...</div>
-		<div v-else-if="continentsError">Error: {{ continentsError.message }}</div>
-		<div v-else>
-			<ul class="continents">
-				<li
-					class="continent-card"
-					v-for="continent in continents"
-					:key="continent.code"
-					@click="goToContinent(continent.code)"
-				>
-					<h2>{{ continent.name }}</h2>
-				</li>
-			</ul>
-		</div>
+	<div v-else-if="continentsError">Error: {{ continentsError.message }}</div>
+	<div v-else>
+		<ul class="continents">
+			<li
+				class="continent-card"
+				v-for="continent in continents"
+				:key="continent.code"
+				@click="goToContinent(continent.code)"
+			>
+				<h2>{{ continent.name }}</h2>
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script setup lang="ts">

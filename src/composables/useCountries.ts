@@ -41,11 +41,19 @@ export function useCountries() {
 	`
 
 	// Fetch all continents
-	const { result: continentsResult, loading: continentsLoading, error: continentsError } = useQuery<ContinentsQuery>(GET_CONTINENTS_QUERY)
+	const {
+		result: continentsResult,
+		loading: continentsLoading,
+		error: continentsError,
+	} = useQuery<ContinentsQuery>(GET_CONTINENTS_QUERY)
 	const continents = computed(() => continentsResult.value?.continents ?? [])
 
 	// Fetch countries for a specific continent
-	const { result: continentResult, loading: continentLoading, error: continentError } = useQuery<ContinentQuery>(GET_COUNTRIES_BY_CONTINENT_QUERY, { code: code })
+	const {
+		result: continentResult,
+		loading: continentLoading,
+		error: continentError,
+	} = useQuery<ContinentQuery>(GET_COUNTRIES_BY_CONTINENT_QUERY, { code: code })
 	const continentName = computed(() => continentResult.value?.continent?.name ?? null)
 	const allCountries = computed(() => continentResult.value?.continent?.countries ?? null)
 
