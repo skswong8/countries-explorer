@@ -70,6 +70,10 @@ const availableCurrencies = computed(() => {
  * @returns {Array} Array of countries by filter value.
  */
 const filteredCountries = computed(() => {
+	if (!selectedCurrency.value) {
+		return countries.value
+	}
+
 	return countries.value.filter((country) => country?.currency?.includes(selectedCurrency.value))
 })
 

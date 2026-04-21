@@ -8,7 +8,7 @@
 			<ul>
 				<li>Native name: {{ country.native }}</li>
 				<li>Code: {{ country.code }}</li>
-				<li>Currencies: {{ country.currency?.replaceAll(',', ', ') }}</li>
+				<li>Currencies: {{ country.currency?.replaceAll(',', ', ') ?? 'N/A' }}</li>
 				<li>Languages:</li>
 				<li class="list-has-children" v-for="language in country.languages" :key="language.code">
 					<ul>
