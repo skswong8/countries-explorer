@@ -1,10 +1,18 @@
-<script setup lang="ts"></script>
-
 <template>
 	<header>
-		<span>Logo goes here</span>
+		<router-link to="/">
+			<img id="logo" src="/public/logo.svg" alt="Country Explorer logo" />
+		</router-link>
 	</header>
 	<router-view />
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+	margin-top: 1rem;
+}
+
+#logo {
+	width: 250px;
+}
+</style>

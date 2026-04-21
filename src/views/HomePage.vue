@@ -1,5 +1,5 @@
 <template>
-	<h1>Countries Explorer</h1>
+	<h1>Exploring countries by continent together</h1>
 	<p>
 		Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
 		pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean

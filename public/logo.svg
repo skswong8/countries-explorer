@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 420 120" height="120" width="420">
+  
+  <circle fill="#14B8A6" r="52" cy="60" cx="60"></circle>
+  <circle stroke-width="14" stroke="#0F766E" r="52" cy="60" cx="60"></circle>
+  
+  
+  <path stroke-width="7" stroke="#0F766E" fill="none" d="M25 60 Q40 40 60 40 Q80 40 95 60"></path>
+  <path stroke-width="7" stroke="#0F766E" fill="none" d="M25 60 Q40 80 60 80 Q80 80 95 60"></path>
+  
+  
+  <path stroke-width="7" stroke="#0F766E" fill="none" d="M60 15 Q45 35 45 60 Q45 85 60 105"></path>
+  <path stroke-width="7" stroke="#0F766E" fill="none" d="M60 15 Q75 35 75 60 Q75 85 60 105"></path>
+
+  
+  <text fill="#0F766E" font-weight="900" font-size="42" font-family="Arial Black, sans-serif" y="55" x="135">Countries</text>
+  <text fill="#14B8A6" font-weight="900" font-size="42" font-family="Arial Black, sans-serif" y="92" x="135">Explorer</text>
+</svg>
